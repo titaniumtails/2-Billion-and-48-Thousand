@@ -1,0 +1,17 @@
+/*
+* {
+  border: 1px solid blue;
+}
+*/
+body {
+  font-family: Futura; Helvetica ; sans-serif;
+}
+
+.board {
+  background: green;
+}
+.cell {
+  background: red;
+  border: 1px solid grey;
+
+}
