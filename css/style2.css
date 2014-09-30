@@ -1,27 +1,45 @@
+/*
 * {
   border: 1px solid blue;
 }
+*/
 
 @font-face {
-  font-family: "Comic Neue";
-  src: url("/fonts/ComicNeue-Regular.ttf");
+  font-family: "Comic Neue Bold";
+  src: url("/fonts/ComicNeue-Bold.ttf");
 }
+
 
 body {
   background: #faf8ef;
-  font-family: "Comic Neue";
+  color: #776e65;
+  font-family: "Comic Neue Bold";
+}
+
+h1 {
+  font-family: "Comic Neue Bold";
+  text-align: center;
 }
 
 .board {
-  font-size: 48px;
+  background: #bbada0;
+  font-family: "Comic Neue Bold";
+  margin: 0 auto;
+  padding: 5px;
   text-align: center;
-
+  height: 474px;
+  width: 474px;
 }
 .cell {
-  background: #BBBBBB;
-  border: 6px solid #323232;
+  background: rgba(238, 238, 218, 0.35);
+  border: 1px solid black;
   float: left;
-  width: 25%;
+  font-size: 2.5em;
+  margin: 8px;
   height: 100px;
-  padding: 10px;
+  width: 100px;
+}
+
+.cell div {
+  margin-top: 24px;
 }
