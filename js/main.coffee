@@ -1,5 +1,16 @@
+#Making a random number for a tile on the board at random.
+
+randomInt = (x) ->
+  Math.floor(Math.random() * x)
+
+randomCellIndices = ->
+  [randomInt(4), randomInt(4)]
+
+
 # This is building a 4x4 board.
 # With an array of 4 and a subset of 4 in each array.
+# We are flattening the array
+
 
 buildBoard = ->
 
@@ -8,24 +19,15 @@ buildBoard = ->
   console.log board
 
 generateTile = ->
-#  RandomGenerator
-
- # for iRow in board
- #   if iRow == 0
- #     then openplace
-
+  value = 2
+  console.log "randomInt: #{randomCellIndices()}"
+  [row,column] = randomCellIndices()
 
   console.log "generate tile"
 
 
-# We are flattening the array
 printArray = (array) ->
   for iRow in array
-    console.log iRow
-
-
-
-
 
 
 
