@@ -1,13 +1,11 @@
+# This is building a 4x4 board.
+# With an array of 4 and a subset of 4 in each array.
+
 buildBoard = ->
 
-  board = []
-  for iRow in [0..3]
-    board[iRow] = []
-
-    for iCell in [0..3]
-      board[iRow][iCell] = 0
-      
+  board =[0..3].map -> ([0..3].map (->0))
   board
+  console.log board
 
 generateTile = ->
 #  RandomGenerator
@@ -20,10 +18,15 @@ generateTile = ->
   console.log "generate tile"
 
 
+# We are flattening the array
 printArray = (array) ->
-
   for iRow in array
     console.log iRow
+
+
+
+
+
 
 
 $ ->
