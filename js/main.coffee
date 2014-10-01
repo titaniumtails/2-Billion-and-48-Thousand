@@ -13,27 +13,28 @@ randomCellIndices = ->
 
 
 buildBoard = ->
+  [0..3].map -> ([0..3].map (->0))
+  
 
-  board =[0..3].map -> ([0..3].map (->0))
-  board
-  console.log board
-
-generateTile = ->
+generateTile = (board) ->
   value = 2
   console.log "randomInt: #{randomCellIndices()}"
   [row,column] = randomCellIndices()
+  board[row][column] = value
 
   console.log "generate tile"
 
 
 printArray = (array) ->
   for iRow in array
+    console.log iRow
 
 
 
 $ ->
   newBoard = buildBoard()
+  generateTile(newBoard)
+  generateTile(newBoard)
   printArray(newBoard)
-  generateTile()
-  generateTile()
+
 
