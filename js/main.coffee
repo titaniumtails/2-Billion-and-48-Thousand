@@ -48,7 +48,7 @@ getRow = (row, boardIndx)->
   [boardIndx[row][0], boardIndx[row][1], boardIndx[row][2], boardIndx[row][3]]
   console.log "I got a row"
 
-mergeCells = ->
+mergeCells = (row, direction)->
   console.log "I got a merged cells"
   if direction is 'right'
     for firstTilenum in [3..0]
@@ -94,8 +94,9 @@ $ ->
     key = e.which
     arrowkeys = [37..40]
 
-    if key in arrowkeys > -1
+    if key in arrowkeys
       #continue the game
+      console.log "key : #{key}"
 
       direction = switch key
         when 37 then 'left'
@@ -103,5 +104,10 @@ $ ->
         when 39 then 'right'
         when 40 then 'down'
       console.log "direction : #{direction}"
+
+      #try moving
+      move(@board, direction)
+      #check the move validity
+
     else
       #do nothing
