@@ -1,6 +1,6 @@
-#Making a random number for a tile on the board at random.
-#Floor puts it to the lowest number, we are looking for 0 - 3, so therefore we times by 4.
-
+# Making a random number for a tile on the board at random.
+# Floor puts it to the lowest number, we are looking for 0 - 3,
+# so therefore we times by 4
 randomInt = (x) ->
   Math.floor(Math.random() * x)
 
@@ -37,11 +37,28 @@ generateTile = (board) ->
   console.log "row: #{row} / column: #{column}"
   console.log "generate tile"
 
+move = (board, direction) ->
+  for i in [0..3]
+    if direction is 'right'
+      row = getRow()
+      mergeCells()
+      collapseCells()
+
+getRow = ->
+  console.log "I got a row"
+
+mergeCells = ->
+  console.log "I got a merged cells"
+
+collapseCells = ->
+  console.log "I'm collapsing cells"
+
+
 showBoard = (board) ->
 #A double for loop because it is the same.
-  for rowArray in [0...3]
+  for rowArray in [0..3]
     for colArray in [0..3]
-      $(".r#{rowArray}.c#{colArray} > div").html(2)
+      $(".r#{rowArray}.c#{colArray} > div").html(board[rowArray][colArray])
 
   console.log "Show Board"
 
@@ -55,10 +72,30 @@ printArray = (array) ->
 
 
 $ ->
-  newBoard = buildBoard()
-  generateTile(newBoard)
-  generateTile(newBoard)
-  showBoard(newBoard)
-  printArray(newBoard)
+  @board = buildBoard()
+  generateTile(@board)
+  generateTile(@board)
+  showBoard(@board)
+  printArray(@board)
 
 
+  $('body').keydown (e) =>
+  
+    #Prevents any key from bieng pressed except the 4 arrow buttons.
+    e.preventDefault()
+
+    #put keys in an array, using indexOf to check the array
+    key = e.which
+    arrowkeys = [37..40]
+
+    if key in arrowkeys > -1
+      #continue the game
+
+      direction = switch key
+        when 37 then 'left'
+        when 38 then 'up'
+        when 39 then 'right'
+        when 40 then 'down'
+      console.log "direction : #{direction}"
+    else
+      #do nothing
