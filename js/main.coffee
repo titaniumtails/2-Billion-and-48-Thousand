@@ -40,15 +40,21 @@ generateTile = (board) ->
 move = (board, direction) ->
   for i in [0..3]
     if direction is 'right'
-      row = getRow()
-      mergeCells()
+      row = getRow(i, board)
+      mergeCells(row, direction)
       collapseCells()
 
-getRow = ->
+getRow = (row, boardIndx)->
+  [boardIndx[row][0], boardIndx[row][1], boardIndx[row][2], boardIndx[row][3]]
   console.log "I got a row"
 
 mergeCells = ->
   console.log "I got a merged cells"
+  if direction is 'right'
+    for firstTilenum in [3..0]
+      for secondTilenum in [firstTilenum-1..0]
+        console.log "My tile nums #{firstTilenum} and #{secondTilenum}"
+        #row[firstTilenum] == row[secondTilenum]
 
 collapseCells = ->
   console.log "I'm collapsing cells"
