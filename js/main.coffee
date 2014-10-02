@@ -38,26 +38,54 @@ generateTile = (board) ->
   console.log "generate tile"
 
 move = (board, direction) ->
+
   for i in [0..3]
     if direction is 'right'
       row = getRow(i, board)
-      mergeCells(row, direction)
-      collapseCells()
+      row = mergeCells(row, direction)
+      row = collapseCells(row, direction)
+      console.log row
 
-getRow = (row, boardIndx)->
-  [boardIndx[row][0], boardIndx[row][1], boardIndx[row][2], boardIndx[row][3]]
+# GETS THE ROW
+getRow = (row, boardArry)->
   console.log "I got a row"
+  [boardArry[row][0], boardArry[row][1], boardArry[row][2], boardArry[row][3]]
 
-mergeCells = (row, direction)->
-  console.log "I got a merged cells"
+mergeCells = (row, direction) ->
   if direction is 'right'
-    for firstTilenum in [3..0]
+    for firstTilenum in [3...0]
       for secondTilenum in [firstTilenum-1..0]
-        console.log "My tile nums #{firstTilenum} and #{secondTilenum}"
-        #row[firstTilenum] == row[secondTilenum]
+        console.log firstTilenum, secondTilenum
 
-collapseCells = ->
-  console.log "I'm collapsing cells"
+        if row[firstTilenum] is 0
+          console.log "Cell is 0"
+          break
+
+        else if row[firstTilenum] == row[secondTilenum]
+          console.log "Cells are the same"
+
+          row[firstTilenum] *= 2
+          row[secondTilenum] = 0
+          break
+
+        else if row[secondTilenum] isnt 0 then break
+
+  row
+
+# COLLAPSE CELLS: THIS REMOVES THE 0 AND
+# PUSHES IT TO THE OTHER SIDE OF THE DIRECTION
+
+collapseCells = (row, direction) ->
+
+  #Remove the '0's
+  row = row.filter (x) -> x isnt 0
+
+  #Adding back the '0's
+  #Making sure it's the right direction for the shift
+  if direction is 'right'
+    while row.length < 4
+      row.unshift 0
+  row
 
 
 showBoard = (board) ->
@@ -82,19 +110,17 @@ $ ->
   generateTile(@board)
   generateTile(@board)
   showBoard(@board)
-  printArray(@board)
-
 
   $('body').keydown (e) =>
-  
-    #Prevents any key from bieng pressed except the 4 arrow buttons.
-    e.preventDefault()
 
     #put keys in an array, using indexOf to check the array
     key = e.which
     arrowkeys = [37..40]
 
     if key in arrowkeys
+      #Prevents any key from bieng pressed except the 4 arrow buttons.
+      e.preventDefault()
+
       #continue the game
       console.log "key : #{key}"
 
